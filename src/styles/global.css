@@ -1,0 +1,217 @@
+:root {
+  --bg-base: #0a0e14;
+  --bg-surface: #111827;
+  --bg-surface-2: #1a2332;
+  --bg-glass: rgba(17, 24, 39, 0.85);
+  --border-thin: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.12);
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+  --accent-blue: #2f81f7;
+  --accent-blue-glow: rgba(47, 129, 247, 0.4);
+  --color-red: #f85149;
+  --color-red-glow: rgba(248, 81, 73, 0.5);
+  --color-green: #3fb950;
+  --color-green-glow: rgba(63, 185, 80, 0.4);
+  --color-amber: #d29922;
+  --color-gray: #6e7681;
+  --color-blue: #2f81f7;
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 20px rgba(47, 129, 247, 0.15);
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-area {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.map-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.leaflet-container {
+  background: var(--bg-base) !important;
+  font-family: var(--font-sans) !important;
+}
+
+.leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(0.9) saturate(0.5);
+}
+
+.leaflet-control-attribution {
+  background: rgba(10, 14, 20, 0.7) !important;
+  color: var(--text-muted) !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--text-secondary) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-medium); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* Animations */
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 var(--color-red-glow); }
+  50% { box-shadow: 0 0 0 12px transparent; }
+}
+
+@keyframes pulse-blue {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-blue-glow); }
+  50% { box-shadow: 0 0 0 12px transparent; }
+}
+
+@keyframes scale-up {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes chaos-flash {
+  0% { opacity: 0; }
+  20% { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+
+/* Map marker styles */
+.map-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.marker-hub-active {
+  width: 14px;
+  height: 14px;
+  background: var(--text-secondary);
+  border: 2px solid var(--border-medium);
+}
+
+.marker-hub-closed {
+  width: 14px;
+  height: 14px;
+  background: var(--color-gray);
+  border: 2px solid var(--color-red);
+  opacity: 0.6;
+}
+
+.marker-package-normal {
+  width: 12px;
+  height: 12px;
+  background: var(--color-green);
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.marker-package-lost {
+  width: 16px;
+  height: 16px;
+  background: var(--color-red);
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.4);
+  animation: pulse-red 1.5s infinite;
+  cursor: pointer;
+}
+
+.marker-package-recovering {
+  width: 16px;
+  height: 16px;
+  background: var(--color-blue);
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.4);
+  animation: pulse-blue 1.5s infinite;
+}
+
+.marker-package-recovered {
+  width: 12px;
+  height: 12px;
+  background: var(--color-green);
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.4);
+}
+
+.marker-package-delivered {
+  width: 10px;
+  height: 10px;
+  background: var(--color-gray);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.marker-vehicle {
+  width: 10px;
+  height: 10px;
+  background: var(--accent-blue);
+  border-radius: 2px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-surface) 25%, var(--bg-surface-2) 50%, var(--bg-surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
