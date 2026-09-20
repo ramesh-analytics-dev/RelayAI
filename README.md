@@ -1,4 +1,19 @@
 # RelayAI — Intelligent Shipment Recovery
+## Demo
+
+**🔗 Live Demo:** [Open RelayAI](https://relayai-shipment-recovery.netlify.app/)
+
+### How to Demo
+
+1. **Launch the app** — View the live logistics network with hubs, vehicles, and shipments.
+2. **Detect** — Misplaced shipments are automatically identified using anomaly detection rules.
+3. **Select a shipment** — Click a red/misplaced package to inspect the issue and available recovery options.
+4. **Compare plans** — Review rescue strategies based on **cost, delivery time, capacity utilization, priority, and CO₂ savings**.
+5. **Recover** — Select a recovery plan and execute it to move the shipment into recovery.
+6. **Track results** — Watch the shipment status and live metrics update in real time.
+7. **Try Chaos Mode** — Simulate a city/hub closure and observe how RelayAI detects affected shipments and generates new recovery plans.
+
+> **💡 Tip:** For the fastest demonstration, wait for a misplaced shipment to appear or use **Chaos Mode** to trigger a recovery scenario immediately.
 
 ## Problem (SH-205)
 
